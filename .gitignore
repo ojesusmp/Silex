@@ -19,5 +19,10 @@ __pycache__/
 .venv/
 venv/
 
+# npm publish artifacts
+*.tgz
+.npm/
+package-lock.json
+
 # Logs
 *.log

@@ -12,13 +12,47 @@ Long projects burn tokens reloading context every new chat. Manual snapshot tool
 
 ## Install
 
-1. Copy this folder to your Claude Code skills directory:
-   - Linux / macOS: `~/.claude/skills/silex/`
-   - Windows: `%USERPROFILE%\.claude\skills\silex\`
-2. Add the snippet from `hooks/session-start.md` to your Claude Code `settings.json` under `hooks.SessionStart`. Three variants are provided — pick the one matching your shell.
-3. Restart your Claude Code session.
+Pick **one** of the install paths below. All three land the skill in the same place.
 
-That is the entire installation. No daemon, no database, no PostToolUse hooks.
+### Option A — `git clone` (no Node required)
+
+Linux / macOS:
+
+```bash
+git clone https://github.com/ojesusmp/Silex.git ~/.claude/skills/silex
+```
+
+Windows PowerShell:
+
+```powershell
+git clone https://github.com/ojesusmp/Silex.git $env:USERPROFILE\.claude\skills\silex
+```
+
+To update later: `git pull` inside the cloned folder.
+
+### Option B — `npx` (cross-platform, one command)
+
+```bash
+npx @ojesusmp/silex
+```
+
+Works on Linux, macOS, and Windows as long as Node + npm are installed. The installer copies the skill files into `~/.claude/skills/silex/` (or `%USERPROFILE%\.claude\skills\silex\` on Windows).
+
+To update later: re-run the same command — `npx` always fetches the latest published version.
+
+### Option C — manual
+
+Download a ZIP from the [GitHub releases](https://github.com/ojesusmp/Silex) page (or clone elsewhere and copy the contents) into `~/.claude/skills/silex/` (Linux/macOS) or `%USERPROFILE%\.claude\skills\silex\` (Windows).
+
+---
+
+After any install path:
+
+1. Add the `SessionStart` hook from [`hooks/session-start.md`](hooks/session-start.md) to your Claude Code `settings.json`. Three variants are provided — pick the one matching your shell.
+2. Restart your Claude Code session.
+3. In any project, type `silex` or `/silex` once. silex asks consent before creating `.journal/`.
+
+That is the entire installation. No daemon, no database, no `PostToolUse` hooks.
 
 ## Use
 
