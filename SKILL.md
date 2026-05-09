@@ -1,5 +1,6 @@
 ---
 name: silex
+version: 1.0.0
 description: Continuous per-project timeline journal. Auto-appends glyph-compressed JSON events to .journal/timeline.jsonl after each meaningful step (edit/write/test/build/commit/decision/wall/fix), maintains .journal/STATE.md as live snapshot, and ends every assistant turn with a one-line receipt. Use when user types "silex", "/silex", "/silex audit", "/silex mark <label>", "journal", "/journal", "log this", "resume journal", or works in any directory containing a .journal/ folder. New sessions auto-load STATE.md via SessionStart hook so resume requires no user briefing — last-saved entry is the recovery point.
 license: MIT
 ---
@@ -262,13 +263,7 @@ Rules:
 
 ## Installation
 
-1. Copy this folder to your Claude Code skills directory:
-   - Linux / macOS: `~/.claude/skills/silex/`
-   - Windows: `%USERPROFILE%\.claude\skills\silex\`
-2. Add the SessionStart hook from `hooks/session-start.md` to your Claude Code `settings.json`. Pick the variant matching your shell (POSIX, PowerShell, or cross-platform Node).
-3. Restart your Claude Code session.
-
-That is the entire installation. No daemon, no database, no PostToolUse hooks.
+See [`README.md`](README.md) — three install paths are documented (`git clone`, `npx @ojesusmp/silex`, manual). After any path lands the files in `~/.claude/skills/silex/`, add the `SessionStart` hook from `hooks/session-start.md` to your Claude Code `settings.json` and restart Claude Code.
 
 ## Failure modes & recovery
 
