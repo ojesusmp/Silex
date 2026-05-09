@@ -1,0 +1,11 @@
+{"t":"2026-01-15T09:02:33Z","a":"W","f":"README.md","r":"✓","w":"project bootstrap"}
+{"t":"2026-01-15T09:18:07Z","a":"E","f":"src/server.ts:1","r":"✓","w":"add express setup"}
+{"t":"2026-01-15T09:20:11Z","a":"T","r":"✗","ms":410,"e":"port 3000 in use","tag":"unit"}
+{"t":"2026-01-15T09:21:02Z","a":"D","w":"switch to port 3001","tag":"config"}
+{"t":"2026-01-15T09:21:48Z","a":"E","f":"src/server.ts:14","r":"✓","w":"port 3001"}
+{"t":"2026-01-15T09:22:14Z","a":"T","r":"✓","ms":380,"tag":"unit"}
+{"t":"2026-01-15T09:24:00Z","a":"C","r":"✓","f":"a3f2c11","w":"feat: server skeleton"}
+{"t":"2026-01-15T09:35:20Z","a":"E","f":"src/auth.ts:42","r":"⚠","e":"undefined user","w":"null check missing"}
+{"t":"2026-01-15T09:36:55Z","a":"F","f":"src/auth.ts:42","r":"✓","fix":"add ?. on user.id"}
+{"t":"2026-01-15T09:37:30Z","a":"T","r":"✓","ms":920,"tag":"unit"}
+{"t":"2026-01-15T09:40:14Z","a":"M","tag":"auth-skeleton-complete","w":"jwt + refresh wired"}

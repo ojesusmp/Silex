@@ -1,0 +1,23 @@
+# silex never tracks per-project journals — only the skill itself.
+.journal/
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Language-specific noise that may appear during local testing
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Logs
+*.log
