@@ -1,6 +1,16 @@
 # silex never tracks per-project journals — only the skill itself.
 .journal/
 
+# Local-install duplicates of skill files at repo root.
+# Canonical source lives in skills/silex/. These root copies exist only so
+# that ~/.claude/skills/silex/ (which is also this repo's working copy on
+# the maintainer's machine) keeps loading silex as a raw skill alongside
+# the plugin layout.
+/SKILL.md
+/templates/
+/examples/
+/hooks/
+
 # OS junk
 .DS_Store
 Thumbs.db
