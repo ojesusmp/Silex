@@ -31,7 +31,7 @@ next chat in same project
               └─> continues without user briefing
 ```
 
-There is **no daemon, no watcher, no background process**. The assistant writes the entries itself, governed by the skill body. The only thing that runs outside the assistant is one `SessionStart` hook (a single shell command) that prints `STATE.md` when a chat begins. See [`hooks/session-start.md`](hooks/session-start.md).
+There is **no daemon, no watcher, no background process**. The assistant writes the entries itself, governed by the skill body. The only thing that runs outside the assistant is one `SessionStart` hook (a single shell command) that prints `STATE.md` when a chat begins. See [`skills/silex/hooks/session-start.md`](skills/silex/hooks/session-start.md).
 
 ## Use cases
 
@@ -76,43 +76,58 @@ silex itself never sends data anywhere. Everything stays on your local disk.
 
 ## Install
 
-Pick **one** of the install paths below. All three land the skill in the same place.
+Pick **one** of the install paths below. All four land the skill in your Claude Code config.
 
-### Option A — `git clone` (no Node required)
+### Option A — Claude Code plugin (Recommended, one slash command)
 
-Linux / macOS:
+Inside any Claude Code session, run:
+
+```
+/plugin marketplace add ojesusmp/Silex
+/plugin install silex@silex
+```
+
+Claude Code pulls the repository, registers the plugin, and the `silex` skill becomes available immediately. To update later, run `/plugin update silex` from inside Claude Code.
+
+### Option B — `git clone` (raw skill install, no Node required)
+
+Clone the repo elsewhere, then place the skill content into your Claude Code skills folder.
+
+Linux / macOS (symlink):
 
 ```bash
-git clone https://github.com/ojesusmp/Silex.git ~/.claude/skills/silex
+git clone https://github.com/ojesusmp/Silex.git ~/silex-repo
+ln -s ~/silex-repo/skills/silex ~/.claude/skills/silex
 ```
 
-Windows PowerShell:
+Windows PowerShell (copy):
 
 ```powershell
-git clone https://github.com/ojesusmp/Silex.git $env:USERPROFILE\.claude\skills\silex
+git clone https://github.com/ojesusmp/Silex.git $env:USERPROFILE\silex-repo
+Copy-Item -Recurse "$env:USERPROFILE\silex-repo\skills\silex" "$env:USERPROFILE\.claude\skills\silex"
 ```
 
-To update later: `git pull` inside the cloned folder.
+To update later: `git pull` inside the cloned folder, then refresh the symlink (Linux/macOS) or re-copy (Windows).
 
-### Option B — `npx` (cross-platform, one command)
+### Option C — `npx` (cross-platform, one command, raw skill install)
 
 ```bash
 npx @ojesusmp/silex
 ```
 
-Works on Linux, macOS, and Windows as long as Node + npm are installed. Installs into the same location as Option A.
+Works on Linux, macOS, and Windows as long as Node + npm are installed. Installs the skill content into `~/.claude/skills/silex/`.
 
 To update later: re-run the same command — `npx` always fetches the latest published version.
 
-### Option C — manual
+### Option D — manual
 
-Download a release ZIP from the [GitHub repository](https://github.com/ojesusmp/Silex), extract into `~/.claude/skills/silex/` (Linux/macOS) or `%USERPROFILE%\.claude\skills\silex\` (Windows).
+Download a release ZIP from the [GitHub repository](https://github.com/ojesusmp/Silex), copy the contents of its `skills/silex/` directory into `~/.claude/skills/silex/` (Linux / macOS) or `%USERPROFILE%\.claude\skills\silex\` (Windows).
 
 ---
 
 After any install path:
 
-1. Add the `SessionStart` hook from [`hooks/session-start.md`](hooks/session-start.md) to your Claude Code `settings.json`. Three variants are provided — pick the one matching your shell.
+1. Add the `SessionStart` hook from [`skills/silex/hooks/session-start.md`](skills/silex/hooks/session-start.md) to your Claude Code `settings.json`. Three variants are provided — pick the one matching your shell.
 2. Restart your Claude Code session.
 3. In any project, type `silex` or `/silex` once. silex asks consent before creating `.journal/` and adding it to `.gitignore`.
 
@@ -149,7 +164,7 @@ Useful commands:
 {"t":"2026-05-09T14:35:10Z","a":"W","f":"src/db.ts","e":"EPERM","fix":"chmod 644"}
 ```
 
-See [SKILL.md](SKILL.md) for the full schema, glyph dictionary, append protocol, runtime governance, and edge-case handling.
+See [SKILL.md](skills/silex/SKILL.md) for the full schema, glyph dictionary, append protocol, runtime governance, and edge-case handling.
 
 ## Per-turn receipt
 
@@ -176,7 +191,7 @@ If you ever see `MISSED` and no recovery on the following turn, run `/silex audi
 
 ## Contributing
 
-Issues and pull requests are welcome at <https://github.com/ojesusmp/Silex/issues>. The design rationale lives in [SKILL.md](SKILL.md). The skill is intentionally minimal — feature requests should be checked against the "What silex does NOT do" section of `SKILL.md` first.
+Issues and pull requests are welcome at <https://github.com/ojesusmp/Silex/issues>. The design rationale lives in [SKILL.md](skills/silex/SKILL.md). The skill is intentionally minimal — feature requests should be checked against the "What silex does NOT do" section of `SKILL.md` first.
 
 ## Changelog
 

@@ -1,7 +1,7 @@
 {
   "name": "@ojesusmp/silex",
-  "version": "1.0.0",
-  "description": "Continuous per-project timeline journal for Claude Code — glyph-compressed, append-only, survives reboots, self-loads on resume.",
+  "version": "1.1.0",
+  "description": "Continuous per-project timeline journal for Claude Code — glyph-compressed, append-only, survives reboots, self-loads on resume. Installable as a Claude Code plugin or via npx.",
   "license": "MIT",
   "author": "ojesusmp (https://github.com/ojesusmp)",
   "repository": {
@@ -17,6 +17,7 @@
     "claude",
     "anthropic",
     "skill",
+    "plugin",
     "journal",
     "timeline",
     "memory",
@@ -28,13 +29,12 @@
     "silex": "bin/install.js"
   },
   "files": [
-    "SKILL.md",
+    ".claude-plugin/",
+    "skills/",
+    "bin/",
     "README.md",
     "LICENSE",
-    "templates/",
-    "examples/",
-    "hooks/",
-    "bin/"
+    "CHANGELOG.md"
   ],
   "engines": {
     "node": ">=14"

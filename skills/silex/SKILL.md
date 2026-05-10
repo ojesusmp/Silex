@@ -1,6 +1,6 @@
 ---
 name: silex
-version: 1.0.0
+version: 1.1.0
 description: Continuous per-project timeline journal. Auto-appends glyph-compressed JSON events to .journal/timeline.jsonl after each meaningful step (edit/write/test/build/commit/decision/wall/fix), maintains .journal/STATE.md as live snapshot, and ends every assistant turn with a one-line receipt. Use when user types "silex", "/silex", "/silex audit", "/silex mark <label>", "journal", "/journal", "log this", "resume journal", or works in any directory containing a .journal/ folder. New sessions auto-load STATE.md via SessionStart hook so resume requires no user briefing — last-saved entry is the recovery point.
 license: MIT
 ---

@@ -2,11 +2,15 @@
 /**
  * silex installer.
  *
- * Copies the bundled skill files into the user's Claude Code skills directory:
+ * Copies the bundled skill content from the package's `skills/silex/` directory
+ * into the user's Claude Code skills folder:
  *   <homedir>/.claude/skills/silex/
  *
  * Cross-platform: reads os.homedir() so the same script works on Linux, macOS,
  * and Windows. No personal paths embedded.
+ *
+ * Note: This is the raw-skill install path. Users who prefer the plugin path
+ * can run `/plugin install ojesusmp/Silex` inside Claude Code instead.
  */
 
 const fs = require("fs");
@@ -14,16 +18,8 @@ const path = require("path");
 const os = require("os");
 
 const PKG_ROOT = path.resolve(__dirname, "..");
+const SOURCE = path.join(PKG_ROOT, "skills", "silex");
 const TARGET = path.join(os.homedir(), ".claude", "skills", "silex");
-
-const ITEMS = [
-  "SKILL.md",
-  "README.md",
-  "LICENSE",
-  "templates",
-  "examples",
-  "hooks",
-];
 
 function copyRecursive(src, dest) {
   const stat = fs.statSync(src);
@@ -37,10 +33,26 @@ function copyRecursive(src, dest) {
   }
 }
 
+function countFiles(dir) {
+  let n = 0;
+  for (const entry of fs.readdirSync(dir)) {
+    const p = path.join(dir, entry);
+    if (fs.statSync(p).isDirectory()) n += countFiles(p);
+    else n++;
+  }
+  return n;
+}
+
 function main() {
   console.log("silex installer");
-  console.log("  source : " + PKG_ROOT);
+  console.log("  source : " + SOURCE);
   console.log("  target : " + TARGET);
+
+  if (!fs.existsSync(SOURCE)) {
+    console.error("\nsilex installer failed: skill source missing at " + SOURCE);
+    console.error("This usually means the package was packed incorrectly. Please file an issue at https://github.com/ojesusmp/Silex/issues.");
+    process.exit(1);
+  }
 
   const existed = fs.existsSync(TARGET);
   if (existed) {
@@ -48,19 +60,10 @@ function main() {
   }
 
   fs.mkdirSync(TARGET, { recursive: true });
+  copyRecursive(SOURCE, TARGET);
 
-  let copied = 0;
-  for (const item of ITEMS) {
-    const src = path.join(PKG_ROOT, item);
-    const dest = path.join(TARGET, item);
-    if (fs.existsSync(src)) {
-      copyRecursive(src, dest);
-      console.log("  copied " + item);
-      copied++;
-    }
-  }
-
-  console.log("\nsilex installed (" + copied + " items) at " + TARGET);
+  const fileCount = countFiles(TARGET);
+  console.log("\nsilex installed (" + fileCount + " files) at " + TARGET);
   console.log("");
   console.log("Next steps:");
   console.log("  1. Add the SessionStart hook from hooks/session-start.md to your Claude Code settings.json.");
