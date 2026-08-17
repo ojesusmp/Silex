@@ -1,4 +1,7 @@
 # Changelog
+## 2.0.2
+- Made the lock-race regression platform-neutral and enabled complete cross-platform matrix results.
+
 ## 2.0.1
 - Fixed the installed-runtime template boundary and explicit init-root handling.
 - Closed an intermittent concurrent lock-path probe race and added a 1,200-child stress proof.
