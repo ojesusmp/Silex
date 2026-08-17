@@ -1,0 +1,4 @@
+interface:
+  display_name: Silex
+  short_description: Deterministic local journal and safe coding-session resume
+  default_prompt: Record verified project events and resume only from safe structured state.

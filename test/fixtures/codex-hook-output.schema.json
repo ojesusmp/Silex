@@ -1,0 +1,11 @@
+{
+  "SessionStart": {
+    "topLevelKeys": ["continue", "hookSpecificOutput"],
+    "continue": true,
+    "hookSpecificOutputKeys": ["additionalContext", "hookEventName"],
+    "hookEventName": "SessionStart"
+  },
+  "PreCompact": { "topLevelKeys": [] },
+  "Stop": { "topLevelKeys": [] },
+  "PostToolUse": { "topLevelKeys": [] }
+}
