@@ -1,4 +1,9 @@
 # Changelog
+## 2.0.1
+- Fixed the installed-runtime template boundary and explicit init-root handling.
+- Closed an intermittent concurrent lock-path probe race and added a 1,200-child stress proof.
+- Updated distribution instructions to use the available GitHub source until npm registry 2.x is published.
+
 ## 2.0.0
 - GitHub install is the current distribution source; npm registry publication remains a separate release step.
 - Added a provider-neutral Node.js 20+ CLI for Codex and Claude Code.

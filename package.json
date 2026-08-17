@@ -1,6 +1,6 @@
 {
   "name": "@ojesusmp/silex",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Deterministic local project journal and safe resume bridge for Codex and Claude Code.",
   "license": "MIT",
   "author": "ojesusmp (https://github.com/ojesusmp)",
